@@ -1,0 +1,8 @@
+node_modules
+dist/
+.env
+*.js.map
+sms_integration_guide.md
+logs
+.serverless
+
