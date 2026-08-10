@@ -1,4 +1,3 @@
-import { validationResult } from "express-validator";
 import HttpStatus from "../constants/httpStatus";
 import Messages from "../constants/messages";
 import MediaRepository from "../repositories/Media.repository";

@@ -45,9 +45,6 @@ functions:
           path: "*"
           method: ANY
 
-plugins:
-  - serverless-esbuild
-
 package:
   patterns:
     - "!src/**"
