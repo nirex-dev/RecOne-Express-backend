@@ -52,8 +52,7 @@ package:
     - "!*.md"
     - "dist/**"
 
-# custom:
-build:
+custom:
   esbuild:
     bundle: true
     minify: false
