@@ -25,7 +25,6 @@ export interface ICategory {
   name: string;
   folderPath: string;
   thumbnail: string;
-  deleted: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

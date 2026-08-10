@@ -21,10 +21,6 @@ const CategorySchema = new Schema<CategoryDocument>(
       type: String,
       required: true,
     },
-    deleted: {
-      type: Boolean,
-      default: false,
-    },
     thumbnail: {
       type: String,
       required: true,
