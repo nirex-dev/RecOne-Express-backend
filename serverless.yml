@@ -42,7 +42,7 @@ functions:
 
     events:
       - httpApi:
-          path: "*"
+          path: /{proxy+}
           method: ANY
 
 package:
