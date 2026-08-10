@@ -37,7 +37,7 @@ provider:
 
 functions:
   api:
-    handler: dist/lambda.handler
+    handler: src/handler.handler
     timeout: 28
 
     events:
