@@ -71,6 +71,6 @@ build:
     exclude:
       - aws-sdk
 
-    packager: npm
+    packager: yarn
     installExtraArgs:
       - "--include=optional"
