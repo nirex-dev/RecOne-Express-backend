@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import config from "../utils/config";
 import { IAuth } from "../utils/types";
