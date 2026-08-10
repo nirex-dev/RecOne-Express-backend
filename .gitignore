@@ -1,8 +1,31 @@
-node_modules
-dist/
-.env
-*.js.map
-sms_integration_guide.md
-logs
-.serverless
+# Dependencies
+node_modules/
 
+# Build
+dist/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Serverless
+.serverless/
+.serverless_plugins/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary
+tmp/
+temp/

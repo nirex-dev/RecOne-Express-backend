@@ -25,6 +25,7 @@ export interface ICategory {
   name: string;
   folderPath: string;
   thumbnail: string;
+  deleted: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -42,6 +43,7 @@ export interface IMedia {
   name: string;
   categoryId: any;
   fileId: string;
+  saved: boolean;
   publicUrl: string;
   createdAt?: Date;
   updatedAt?: Date;

@@ -1,0 +1,71 @@
+name: Deploy RecOne API
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # --------------------------------
+      # Checkout
+      # --------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --------------------------------
+      # Node.js
+      # --------------------------------
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # --------------------------------
+      # Install dependencies
+      # --------------------------------
+      - name: Install dependencies
+        run: npm ci
+
+      # --------------------------------
+      # Build TypeScript
+      # --------------------------------
+      - name: Build TypeScript
+        run: npm run build
+
+      # --------------------------------
+      # Deploy
+      # --------------------------------
+      - name: Deploy to AWS Lambda
+        run: npx serverless deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
+
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_TEMP_SECRET: ${{ secrets.JWT_TEMP_SECRET }}
+
+          RATELIMIT_WINDOW_MS: ${{ secrets.RATELIMIT_WINDOW_MS }}
+          RATELIMIT_MAX_REQUESTS: ${{ secrets.RATELIMIT_MAX_REQUESTS }}
+
+          CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+
+          IMAGEKIT_PUBLIC_KEY: ${{ secrets.IMAGEKIT_PUBLIC_KEY }}
+          IMAGEKIT_PRIVATE_KEY: ${{ secrets.IMAGEKIT_PRIVATE_KEY }}
+          IMAGEKIT_URL_END_POINT: ${{ secrets.IMAGEKIT_URL_END_POINT }}

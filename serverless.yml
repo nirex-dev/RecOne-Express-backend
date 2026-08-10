@@ -1,32 +1,36 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-# org: ashu1
-org: nirex
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+org: nirex2002
 app: nirex
+
 service: RecOne-api
+
 useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs22.x
+  architecture: x86_64
 
   stage: production
-
   region: ap-southeast-2
 
   memorySize: 512
-
   timeout: 30
 
   environment:
     NODE_ENV: production
+
     MONGO_URI: ${env:MONGO_URI}
     MONGO_DB_NAME: ${env:MONGO_DB_NAME}
+
+
     JWT_SECRET: ${env:JWT_SECRET}
     JWT_TEMP_SECRET: ${env:JWT_TEMP_SECRET}
+
     RATELIMIT_WINDOW_MS: ${env:RATELIMIT_WINDOW_MS}
     RATELIMIT_MAX_REQUESTS: ${env:RATELIMIT_MAX_REQUESTS}
+
     CORS_ORIGIN: ${env:CORS_ORIGIN}
+
     IMAGEKIT_PUBLIC_KEY: ${env:IMAGEKIT_PUBLIC_KEY}
     IMAGEKIT_PRIVATE_KEY: ${env:IMAGEKIT_PRIVATE_KEY}
     IMAGEKIT_URL_END_POINT: ${env:IMAGEKIT_URL_END_POINT}
@@ -37,27 +41,38 @@ functions:
     timeout: 28
 
     events:
-      - httpApi: "*"
-
-# plugins:
-#   - serverless-offline
-#   - serverless-esbuild
-
-package:
-  individually: true
+      - httpApi:
+          path: "*"
+          method: ANY
 
 plugins:
   - serverless-esbuild
 
+package:
+  patterns:
+    - "!src/**"
+    - "!*.ts"
+    - "!*.md"
+    - "dist/**"
 
 custom:
   esbuild:
     bundle: true
-    external:
-      - sharp
-    minify: true
+    minify: false
     sourcemap: false
+
     target: node22
     platform: node
+
+    keepNames: true
+
+    # Important for native packages such as sharp
+    external:
+      - sharp
+
     exclude:
       - aws-sdk
+
+    packager: npm
+    installExtraArgs:
+      - "--include=optional"

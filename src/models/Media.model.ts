@@ -33,7 +33,6 @@ const MediaSchema = new Schema<MediaDocument>(
       type: String,
       required: true,
     },
-
     saved: {
       type: Boolean,
       default: false,

@@ -45,6 +45,7 @@
     "@types/node": "^25.6.0",
     "esbuild": "^0.28.1",
     "nodemon": "^3.1.14",
+    "serverless": "^4.40.0",
     "serverless-esbuild": "^1.57.2",
     "serverless-offline": "^14.7.4",
     "ts-node": "^10.9.2",
