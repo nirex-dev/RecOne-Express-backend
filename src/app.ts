@@ -10,6 +10,9 @@ import { globalErrorHandler } from "./middleware/errorHandler";
 
 const app: Application = express();
 
+// Trust reverse proxy (API Gateway / ALB) for correct client IP & rate limiting
+app.set("trust proxy", 1);
+
 // ---------- Helmet Middleware ----------
 app.use(helmet());
 
