@@ -31,7 +31,7 @@ export const createAndUpdateRateController = async (
       shopId,
     );
 
-    return ApiResponse.created(res, Messages.SUCCESS);
+    return ApiResponse.created(res, Messages.SUCCESS, result);
   } catch (err: any) {
     return ApiResponse.error(
       res,
@@ -47,6 +47,7 @@ export const getTodayRateController = async (req: Request, res: Response) => {
     const { shopId } = await (req as any).user;
 
     if (!shopId) {
+      console.log(shopId)
       throw new AppError(Messages.ERROR.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
     }
 

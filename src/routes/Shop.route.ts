@@ -12,7 +12,7 @@ const router = Router();
 
 router
   .route("/")
-  .get(verifyToken, getAllShopsController)
+  .get(getAllShopsController)
   .post(
     verifyToken,
     createShopValidator,
